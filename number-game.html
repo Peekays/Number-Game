@@ -25,14 +25,14 @@
     <div id="message"></div>
     <script type="text/javascript">
             //write your code here
-			var bal=1000,a=[];
+			var bal=1000,a=[0,0,0];
 			function play() {
 				bal=bal-100;
 				a[0]=Math.floor(Math.random()*10);
 				a[1]=Math.floor(Math.random()*10);
 				a[2]=Math.floor(Math.random()*10);
-				a.sort();
 				document.getElementById("randomNumbers").innerHTML="The random numbers are<br>"+a[0]+" "+a[1]+" "+a[2];
+				a.sort();
 				if(bal>=100) {
 					if(a[0]==a[1] && a[1]==a[2]) {
 						bal=bal+1000;
