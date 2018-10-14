@@ -20,25 +20,26 @@
 
     <h3>Game</h3>
     <div>You have <span id="moneyLeft">1000</span> INR</div>
-    <button id="startButton" onclick="play()">Start</button>
+    <button id="startButton">Start</button>
     <h3 id="randomNumbers"></h3>
     <div id="message"></div>
     <script type="text/javascript">
             //write your code here
+			window.onload=document.getElementById('startButton').addEventListener('click',play);
 			var bal=1000,a=[0,0,0];
 			function play() {
 				bal=bal-100;
 				a[0]=Math.floor(Math.random()*10);
 				a[1]=Math.floor(Math.random()*10);
-				a[2]=Math.floor(Math.random()*10);
-				document.getElementById("randomNumbers").innerHTML="The random numbers are<br>"+a[0]+" "+a[1]+" "+a[2];
+				a[2]=Math.floor(Math.random()*10);			
+				document.getElementById("randomNumbers").innerHTML=a[0]+" "+a[1]+" "+a[2];
 				a.sort();
 				if(bal>=100) {
 					if(a[0]==a[1] && a[1]==a[2]) {
 						bal=bal+1000;
 						document.getElementById('message').innerHTML="You were lucky this time, you got 1000 INR as all the numbers are same";
 					}
-					else if(a[0]%2==1 && a[1]%2==1 && a[2]%2==1) {
+					else if(a[0]%2!=0 && a[1]%2!=0 && a[2]%2!=0) {
 						bal=bal+300;
 						document.getElementById('message').innerHTML="You were lucky this time, you got 300 INR as all the numbers are odd";
 					}
