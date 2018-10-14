@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+<title>Inkoop Assessment Code</title>
+</head>
+<body>
+    <h1>Number Game</h1>
+    <p>Build a game in js with following rules</p>
+    <ul>
+        <li>User has 1000 INR when he starts the game</li>
+        <li>Every try(click on start) is charged 100 INR</li>
+        <li>Game is over if user has less than 100 INR</li>
+        <li>Every try generates three random numbers, each random number is in 0-9 range</li>
+        <li>If all the numbers are odd/even (eg. 2 4 6), user gets 300 INR</li>
+        <li>If the numbers are in sequence with difference of 1 in any order (eg. 2 3 4 or 3 2 4 or 4 6 5), user gets 800 INR</li>
+        <li>If all the numbers are same (eg. 4 4 4), user gets 1000 INR</li>
+        <li>Else user gets no money</li>
+    </ul>
+    </div>
+
+    <h3>Game</h3>
+    <div>You have <span id="moneyLeft">1000</span> INR</div>
+    <button id="startButton" onclick="play()">Start</button>
+    <h3 id="randomNumbers"></h3>
+    <div id="message"></div>
+    <script type="text/javascript">
+            //write your code here
+			var bal=1000,a=[];
+			function play() {
+				bal=bal-100;
+				a[0]=Math.floor(Math.random()*10);
+				a[1]=Math.floor(Math.random()*10);
+				a[2]=Math.floor(Math.random()*10);
+				a.sort();
+				document.getElementById("randomNumbers").innerHTML="The random numbers are<br>"+a[0]+" "+a[1]+" "+a[2];
+				if(bal>=100) {
+					if(a[0]==a[1] && a[1]==a[2]) {
+						bal=bal+1000;
+						document.getElementById('message').innerHTML="You were lucky this time, you got 1000 INR as all the numbers are same";
+					}
+					else if(a[0]%2==1 && a[1]%2==1 && a[2]%2==1) {
+						bal=bal+300;
+						document.getElementById('message').innerHTML="You were lucky this time, you got 300 INR as all the numbers are odd";
+					}
+					else if(a[0]%2==0 && a[1]%2==0 && a[2]%2==0) {
+						bal=bal+300;
+						document.getElementById('message').innerHTML="You were lucky this time, you got 300 INR as all the numbers are even";
+					}
+					else if(a[0]+1==a[1] && a[1]+1==a[2]) {
+						bal=bal+800;
+						document.getElementById('message').innerHTML="You were lucky this time, you got 800 INR as all the numbers have difference 1.";
+					}
+					else {
+						document.getElementById('message').innerHTML="You were not lucky this time";
+					}
+				}
+				else {
+					document.getElementById('startButton').disabled=true;
+					document.getElementById('message').innerHTML="Game Over";
+				}
+				document.getElementById('moneyLeft').innerHTML=bal;
+			} 
+    </script>
+</body>
+</html>
